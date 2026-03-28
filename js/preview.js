@@ -19,8 +19,8 @@ export function drawPreview(text, textState) {
 
   ctx.font = `${textState.fontSize}px ${textState.font}`;
 
-  const x = textState.x + SIGN_AREA.width / 2;
-  const y = textState.y + SIGN_AREA.height / 2;
+  const x = textState.x + (SIGN_AREA.width / 2)*SCALE;
+  const y = textState.y + (SIGN_AREA.height / 2)*SCALE;
 
   ctx.fillText(text, x, y);
 }

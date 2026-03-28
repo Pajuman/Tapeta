@@ -7,8 +7,8 @@ export const SCALE = 0.25;
 export const SIGN_AREA = {
   x: 340,
   y: 30,
-  width: 200,
-  height: 60
+  width: 800,
+  height: 240
 };
 
 // default text settings
