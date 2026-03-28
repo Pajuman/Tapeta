@@ -1,9 +1,7 @@
 // sizes
-export const PREVIEW_WIDTH = 895;
-export const PREVIEW_HEIGHT = 620;
-
-export const PRINT_WIDTH = 2480;
-export const PRINT_HEIGHT = 3508;
+export const PRINT_WIDTH = 3508;
+export const PRINT_HEIGHT = 2480;
+export const SCALE = 0.25;
 
 // sign position (preview coordinates)
 export const SIGN_AREA = {

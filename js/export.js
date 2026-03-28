@@ -1,8 +1,7 @@
 import {
     PRINT_WIDTH,
     PRINT_HEIGHT,
-    PREVIEW_WIDTH,
-    PREVIEW_HEIGHT,
+    SCALE,
     SIGN_AREA,
     IMAGE_SRC
   } from "./constants.js";
@@ -14,14 +13,12 @@ import {
     exportCanvas.width = PRINT_WIDTH;
     exportCanvas.height = PRINT_HEIGHT;
   
-    const scaleX = PRINT_WIDTH / PREVIEW_WIDTH;
-    const scaleY = PRINT_HEIGHT / PREVIEW_HEIGHT;
   
     const printSignArea = {
-      x: SIGN_AREA.x * scaleX,
-      y: SIGN_AREA.y * scaleY,
-      width: SIGN_AREA.width * scaleX,
-      height: SIGN_AREA.height * scaleY
+      x: SIGN_AREA.x * SCALE,
+      y: SIGN_AREA.y * SCALE,
+      width: SIGN_AREA.width * SCALE,
+      height: SIGN_AREA.height * SCALE
     };
   
     const img = new Image();
@@ -35,7 +32,7 @@ import {
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
   
-      let fontSize = textState.fontSize * scaleX;
+      let fontSize = textState.fontSize * SCALE;
       ctx.font = `${fontSize}px ${textState.font}`;
   
       ctx.fillText(

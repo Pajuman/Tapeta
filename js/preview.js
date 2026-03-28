@@ -1,10 +1,10 @@
-import { PREVIEW_WIDTH, PREVIEW_HEIGHT, IMAGE_SRC, SIGN_AREA } from "./constants.js";
+import { SCALE, PRINT_WIDTH, PRINT_HEIGHT, IMAGE_SRC, SIGN_AREA } from "./constants.js";
 
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
-canvas.width = PREVIEW_WIDTH;
-canvas.height = PREVIEW_HEIGHT;
+canvas.width = PRINT_WIDTH * SCALE;
+canvas.height = PRINT_HEIGHT * SCALE;
 
 const image = new Image();
 image.src = IMAGE_SRC;
