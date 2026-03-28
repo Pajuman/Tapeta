@@ -7,3 +7,20 @@ Hlavní komponenty:
 - renderování tapety + textu do pdf
 - platbu
 
+Jak si to představuju (uživatelský pohled)
+Uživatel přijde na stránku a:
+
+Vybere si jeden z návrhů polepu
+bude tam cca 5 variant (různé barvy/styly)- jeden vkládám do přílohy 
+všechny mají nad dveřmi ceduli (prázdné místo pro text)
+Vybere si font
+cca 3 fonty
+já dodám
+Napíše vlastní text
+ten se mu hned zobrazí v obrázku na ceduli
+Uvidí náhled
+jak to bude vypadat finálně
+Potvrdí, že je to OK
+Zaplatí
+Stáhne si PDF
+připravené pro tisk

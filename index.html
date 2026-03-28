@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <link rel="stylesheet" href="style.css" type="text/css">
-  <script src="app.js" defer></script>
+  <script type="module" src="./js/main.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <title>Konfigurátor cedule</title>  
 </head>
@@ -14,7 +14,20 @@
 
   <br />
 
-  <canvas id="canvas" width="500" height="400"></canvas>
+  <canvas id="canvas"></canvas>
   <button id="downloadPdf">Stáhnout PDF</button>
+  <select id="fontSelect">
+    <option value="Arial">Arial</option>
+    <option value="Times New Roman">Times New Roman</option>
+    <option value="Courier New">Courier New</option>
+  </select>
+  
+  <button id="increaseFont">A+</button>
+  <button id="decreaseFont">A-</button>
+  
+  <button id="up">↑</button>
+  <button id="down">↓</button>
+  <button id="left">←</button>
+  <button id="right">→</button>
 </body>
 </html>

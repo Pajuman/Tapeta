@@ -1,0 +1,35 @@
+// sizes
+export const PREVIEW_WIDTH = 895;
+export const PREVIEW_HEIGHT = 620;
+
+export const PRINT_WIDTH = 2480;
+export const PRINT_HEIGHT = 3508;
+
+// sign position (preview coordinates)
+export const SIGN_AREA = {
+  x: 340,
+  y: 30,
+  width: 200,
+  height: 60
+};
+
+// default text settings
+export const DEFAULT_TEXT = {
+  font: "Arial",
+  fontSize: 30,
+  color: "#000000"
+};
+
+// movement + limits
+export const MOVE_STEP = 2;
+export const FONT_SIZE = {
+  min: 10,
+  max: 200,
+  step: 5
+};
+
+// image
+export const IMAGE_SRC = "../images/tapeta.png";
+
+// fonts
+export const FONTS = ["Arial", "Times New Roman", "Courier New"];
