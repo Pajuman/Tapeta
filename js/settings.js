@@ -1,12 +1,13 @@
-import { DEFAULT_TEXT, SIGN_AREA, FONT_SIZE } from "./constants.js";
+import { SIGN_AREA, FONT_SIZE } from "./constants.js";
 import { drawPreview } from "./preview.js";
 
 export const textState = {
-  font: DEFAULT_TEXT.font,
-  fontSize: DEFAULT_TEXT.fontSize,
-  color: DEFAULT_TEXT.color,
+  text: "",
   x: SIGN_AREA.x,
-  y: SIGN_AREA.y
+  y: SIGN_AREA.y,
+  font: "Arial",
+  fontSize: 30,
+  color: "#000000"
 };
 
 export function setFont(font) {
@@ -23,13 +24,7 @@ export function changeFontSize(delta) {
   update();
 }
 
-export function moveText(dx, dy) {
-  textState.x += dx;
-  textState.y += dy;
-  update();
-}
-
 function update() {
   const text = document.getElementById("textInput").value;
-  drawPreview(text, textState);
+  drawPreview();
 }

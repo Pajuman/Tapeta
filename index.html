@@ -10,24 +10,26 @@
 <body>
 
   <h2>Napiš text na ceduli</h2>
-  <input id="textInput" placeholder="Např. Novákovi" />
+  
 
   <br />
+  <div>
+    <canvas id="canvas"></canvas>
+    <button id="downloadPdf">Stáhnout PDF</button>
+  </div>
+  <div>
+    <input id="textInput" placeholder="Např. Novákovi" />
+    <select id="fontSelect">
+      <option value="Arial">Arial</option>
+      <option value="Times New Roman">Times New Roman</option>
+      <option value="Courier New">Courier New</option>
+    </select>
+    
+    <button id="increaseFont">A+</button>
+    <button id="decreaseFont">A-</button>
+  </div>
 
-  <canvas id="canvas"></canvas>
-  <button id="downloadPdf">Stáhnout PDF</button>
-  <select id="fontSelect">
-    <option value="Arial">Arial</option>
-    <option value="Times New Roman">Times New Roman</option>
-    <option value="Courier New">Courier New</option>
-  </select>
+    
   
-  <button id="increaseFont">A+</button>
-  <button id="decreaseFont">A-</button>
-  
-  <button id="up">↑</button>
-  <button id="down">↓</button>
-  <button id="left">←</button>
-  <button id="right">→</button>
 </body>
 </html>

@@ -18,8 +18,7 @@ export const DEFAULT_TEXT = {
   color: "#000000"
 };
 
-// movement + limits
-export const MOVE_STEP = 2;
+// move limits
 export const FONT_SIZE = {
   min: 10,
   max: 200,
