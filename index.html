@@ -9,27 +9,32 @@
 </head>
 <body>
 
-  <h2>Napiš text na ceduli</h2>
-  
+  <h2>Napiš text na ceduli</h2>  
 
   <br />
+
   <div>
     <canvas id="canvas"></canvas>
     <button id="downloadPdf">Stáhnout PDF</button>
+    <button id="addText">+ Přidat text</button>
   </div>
-  <div>
-    <input id="textInput" placeholder="Např. Novákovi" />
-    <select id="fontSelect">
+
+  <div id="textControlsContainer"></div>
+  
+<!-- only template in HTML -->
+<template id="textLayerTemplate">
+  <div class="text-layer">
+    <input class="textInput" placeholder="Sem piště text" />
+    <select class="fontSelect">
       <option value="Arial">Arial</option>
       <option value="Times New Roman">Times New Roman</option>
       <option value="Courier New">Courier New</option>
     </select>
-    
-    <button id="increaseFont">A+</button>
-    <button id="decreaseFont">A-</button>
-  </div>
 
-    
+    <button class="increaseFont">A+</button>
+    <button class="decreaseFont">A-</button>
+  </div>
+</template>    
   
 </body>
 </html>

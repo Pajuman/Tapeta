@@ -1,5 +1,5 @@
 import { SCALE, PRINT_WIDTH, PRINT_HEIGHT, IMAGE_SRC, SIGN_AREA } from "./constants.js";
-import { textState } from "./settings.js";
+import {textLayers} from "./settings.js"
 
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
@@ -8,81 +8,95 @@ canvas.width = PRINT_WIDTH * SCALE;
 canvas.height = PRINT_HEIGHT * SCALE;
 
 
-
 const image = new Image();
 image.src = IMAGE_SRC;
 
 // ---- draw preview function ----
-export function drawPreview() {
+export function drawPreview(layers) {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
 
-  ctx.fillStyle = textState.color;
-  ctx.textAlign = "center";
-  ctx.textBaseline = "middle";
-  ctx.font = `${textState.fontSize}px ${textState.font}`;
+  layers.forEach(layer => {
+    ctx.fillStyle = layer.color || "#000";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.font = `${layer.fontSize}px ${layer.font}`;
 
-  const x = textState.x + SIGN_AREA.width / 2;
-  const y = textState.y + SIGN_AREA.height / 2;
+    const x = layer.x + SIGN_AREA.width / 2;
+    const y = layer.y + SIGN_AREA.height / 2;
 
-  ctx.fillText(textState.text, x, y);
+    ctx.fillText(layer.text, x, y);
+  });
 }
 
-// ---- input event ----
-const input = document.getElementById("textInput");
-input.addEventListener("input", (e) => {
-  textState.text = e.target.value;
-  drawPreview();
-});
-
-// ---- drag & drop ----
 let isDragging = false;
+let activeLayer = null;
 let offsetX = 0;
 let offsetY = 0;
 
-// pointer events = work on desktop & mobile
+// 🔽 CLICK / TOUCH
 canvas.addEventListener("pointerdown", (e) => {
   const rect = canvas.getBoundingClientRect();
   const x = e.clientX - rect.left;
   const y = e.clientY - rect.top;
 
-  ctx.font = `${textState.fontSize}px ${textState.font}`;
-  const textWidth = ctx.measureText(textState.text).width;
-  const textHeight = textState.fontSize;
+  // projdi vrstvy odzadu (vrchní má prioritu)
+  for (let i = textLayers.length - 1; i >= 0; i--) {
+    const layer = textLayers[i];
 
-  const textX = textState.x + SIGN_AREA.width / 2;
-  const textY = textState.y + SIGN_AREA.height / 2;
+    ctx.font = `${layer.fontSize}px ${layer.font}`;
+    const textWidth = ctx.measureText(layer.text).width;
+    const textHeight = layer.fontSize;
 
-  if (
-    x >= textX - textWidth / 2 &&
-    x <= textX + textWidth / 2 &&
-    y >= textY - textHeight / 2 &&
-    y <= textY + textHeight / 2
-  ) {
-    isDragging = true;
-    offsetX = x - textState.x;
-    offsetY = y - textState.y;
+    const textX = layer.x + SIGN_AREA.width / 2;
+    const textY = layer.y + SIGN_AREA.height / 2;
+
+    if (
+      x >= textX - textWidth / 2 &&
+      x <= textX + textWidth / 2 &&
+      y >= textY - textHeight / 2 &&
+      y <= textY + textHeight / 2
+    ) {
+      activeLayer = layer;
+      isDragging = true;
+
+      offsetX = x - layer.x;
+      offsetY = y - layer.y;
+
+      break;
+    }
   }
 });
 
+
+// 🔄 MOVE
 canvas.addEventListener("pointermove", (e) => {
-  if (!isDragging) return;
+  if (!isDragging || !activeLayer) return;
 
   const rect = canvas.getBoundingClientRect();
   const x = e.clientX - rect.left;
   const y = e.clientY - rect.top;
 
-  textState.x = x - offsetX;
-  textState.y = y - offsetY;
+  activeLayer.x = x - offsetX;
+  activeLayer.y = y - offsetY;
 
-  drawPreview();
+  drawPreview(textLayers);
 });
 
-canvas.addEventListener("pointerup", () => { isDragging = false; });
-canvas.addEventListener("pointerleave", () => { isDragging = false; });
 
-// disable scrolling on mobile when dragging
+// 🔼 RELEASE
+canvas.addEventListener("pointerup", () => {
+  isDragging = false;
+  activeLayer = null;
+});
+
+canvas.addEventListener("pointerleave", () => {
+  isDragging = false;
+  activeLayer = null;
+});
+
+// 📱 mobile fix
 canvas.style.touchAction = "none";
 
 // ---- draw after image loads ----
-image.onload = () => drawPreview();
+image.onload = () => drawPreview(textLayers);

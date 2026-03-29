@@ -1,30 +1,35 @@
 import { SIGN_AREA, FONT_SIZE } from "./constants.js";
-import { drawPreview } from "./preview.js";
 
-export const textState = {
-  text: "",
-  x: SIGN_AREA.x,
-  y: SIGN_AREA.y,
-  font: "Arial",
-  fontSize: 30,
-  color: "#000000"
-};
+// pole všech textů
+export const textLayers = [];
 
-export function setFont(font) {
-  textState.font = font;
-  update();
+let idCounter = 0;
+
+// vytvoření nového textu
+export function createTextLayer() {
+  const layer = {
+    id: idCounter++,
+    text: "",
+    x: SIGN_AREA.x,
+    y: SIGN_AREA.y,
+    font: "Arial",
+    fontSize: 30,
+    color: "#000000"
+  };
+
+  textLayers.push(layer);
+  return layer;
 }
 
-export function changeFontSize(delta) {
-  textState.fontSize += delta;
-
-  if (textState.fontSize < FONT_SIZE.min) textState.fontSize = FONT_SIZE.min;
-  if (textState.fontSize > FONT_SIZE.max) textState.fontSize = FONT_SIZE.max;
-
-  update();
+// změna fontu
+export function setFont(layer, font) {
+  layer.font = font;
 }
 
-function update() {
-  const text = document.getElementById("textInput").value;
-  drawPreview();
+// změna velikosti
+export function changeFontSize(layer, delta) {
+  layer.fontSize += delta;
+
+  if (layer.fontSize < FONT_SIZE.min) layer.fontSize = FONT_SIZE.min;
+  if (layer.fontSize > FONT_SIZE.max) layer.fontSize = FONT_SIZE.max;
 }
