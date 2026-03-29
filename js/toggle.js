@@ -1,21 +1,3 @@
-import { exportPDF } from "./export.js";
-import {textLayers, addRow } from "./settings.js";
-
-
-// container for dynamic text controls
-
-const addBtn = document.getElementById("addText");
-
-addBtn.addEventListener("click", () => {
-  addRow()
-  });
-
-
-// 📄 EXPORT PDF
-document.getElementById("downloadPdf").addEventListener("click", () => {
-  exportPDF(textLayers);
-});
-
 const toggleBtn = document.getElementById("toggleHelp");
 const overlay = document.getElementById("helpOverlay");
 const closeBtn = document.getElementById("closeHelp");
@@ -32,5 +14,3 @@ closeBtn.addEventListener("click", () => {
 overlay.addEventListener("click", (e) => {
   if (e.target === overlay) overlay.style.display = "none";
 });
-
-addRow();

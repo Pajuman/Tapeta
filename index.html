@@ -6,17 +6,30 @@
   <script type="module" src="./js/main.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <title>Konfigurátor cedule</title>  
+  <link rel="shortcut icon" href="//www.brydova.cz/wp-content/uploads/2016/02/cropped-ikona.png">
+  <link rel="stylesheet" id="gfont-style-css" href="//fonts.googleapis.com/css?family=Open+Sans%3A400italic%2C400%2C300%2C600%2C700%2C800%7CMerriweather%3A300%2C400%2C700&amp;ver=6.8.5" type="text/css" media="all">
 </head>
 <body>
+  <img src="//www.brydova.cz/wp-content/uploads/2016/04/01-cerna-big-600x338.jpg" width="500" id="img-logo-w1" alt="logo" class="img-logo-w1">
 
-  <h2>Napiš text na ceduli</h2>  
-
-  <br />
-
-  <div>
-    <canvas id="canvas"></canvas>
+  <div class="mainButtons">    
     <button id="downloadPdf">Stáhnout PDF</button>
-    <button id="addText">+ Přidat text</button>
+    <button id="addText">+ Přidat řádek</button>
+    <button id="toggleHelp">Nápověda</button>
+  </div>
+<!-- Overlay nápovědy -->
+<div id="helpOverlay">
+  <div class="helpContent">
+    <h3>Nápověda</h3>
+    <ul>
+      <li>Klikni na "+ Přidat řádek" pro novou vrstvu</li>
+      <li>Táhni text myší nebo prstem pro přesunutí</li>
+      <li>Vyber font a velikost textu pomocí ovládacích prvků</li>
+      <li>Po dokončení klikni "Stáhnout PDF"</li>
+    </ul>
+    <button id="closeHelp">Zavřít</button>
+  </div>
+</div>
   </div>
 
   <div id="textControlsContainer"></div>
@@ -24,7 +37,7 @@
 <!-- only template in HTML -->
 <template id="textLayerTemplate">
   <div class="text-layer">
-    <input class="textInput" placeholder="Sem piště text" />
+    <input class="textInput" value="Nový řádek" />
     <select class="fontSelect">
       <option value="Arial">Arial</option>
       <option value="Times New Roman">Times New Roman</option>
@@ -34,7 +47,9 @@
     <button class="increaseFont">A+</button>
     <button class="decreaseFont">A-</button>
   </div>
-</template>    
+</template>   
+
+<canvas id="canvas"></canvas>
   
 </body>
 </html>

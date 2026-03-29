@@ -1,24 +1,18 @@
 import {
-    PRINT_WIDTH,
-    PRINT_HEIGHT,
-    SCALE,
-    SIGN_AREA,
-    IMAGE_SRC
-  } from "./constants.js";
-  
-export function exportPDF(text, textState) {
+  PRINT_WIDTH,
+  PRINT_HEIGHT, 
+  SCALE, 
+  SIGN_AREA,
+  IMAGE_SRC
+} from "./constants.js";
+
+export function exportPDF(layers) {
+  console.log(layers);
   const exportCanvas = document.createElement("canvas");
   const ctx = exportCanvas.getContext("2d");
 
   exportCanvas.width = PRINT_WIDTH;
-  exportCanvas.height = PRINT_HEIGHT;
-
-  const printSignArea = {
-    x: SIGN_AREA.x,
-    y: SIGN_AREA.y,
-    width: SIGN_AREA.width,
-    height: SIGN_AREA.height
-  };
+  exportCanvas.height = PRINT_HEIGHT; 
 
   const img = new Image();
   img.src = IMAGE_SRC;
@@ -27,20 +21,25 @@ export function exportPDF(text, textState) {
     ctx.imageSmoothingQuality = "high";
     ctx.drawImage(img, 0, 0, PRINT_WIDTH, PRINT_HEIGHT);
 
-    ctx.fillStyle = textState.color;
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
+    layers.forEach(layer => {
+      ctx.fillStyle = layer.color || "#000";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
 
-    let fontSize = textState.fontSize * SCALE;
-    ctx.font = `${fontSize}px ${textState.font}`;
+      const fontSize = layer.fontSize * SCALE;
+      ctx.font = `${fontSize}px ${layer.font}`;
 
-    ctx.fillText(
-      text,
-      printSignArea.x + printSignArea.width / 2,
-      printSignArea.y + printSignArea.height / 2
-    );
+      const x =
+        (layer.x + SIGN_AREA.width / 2) * SCALE;
+
+      const y =
+        (layer.y + SIGN_AREA.height / 2) * SCALE;
+
+      ctx.fillText(layer.text, x, y);
+    });
 
     const { jsPDF } = window.jspdf;
+
     const pdf = new jsPDF({
       orientation: "portrait",
       unit: "px",
