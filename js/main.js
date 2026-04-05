@@ -1,36 +1,27 @@
-import { exportPDF } from "./export.js";
-import {textLayers, addRow } from "./settings.js";
+import { exportPDF } from "./exportPdf.js";
+import {textLayers, addRow } from "./textLayers.js";
 
-
-// container for dynamic text controls
-
-const addBtn = document.getElementById("addText");
-
-addBtn.addEventListener("click", () => {
+// ADD TEXT
+document.getElementById("addText").addEventListener("click", () => {
   addRow()
   });
 
-
-// 📄 EXPORT PDF
+// EXPORT PDF
 document.getElementById("downloadPdf").addEventListener("click", () => {
   exportPDF(textLayers);
 });
 
-const toggleBtn = document.getElementById("toggleHelp");
+// TOGGLE HELP OVERLAY
 const overlay = document.getElementById("helpOverlay");
-const closeBtn = document.getElementById("closeHelp");
-
-toggleBtn.addEventListener("click", () => {
+document.getElementById("toggleHelp").addEventListener("click", () => {
   overlay.style.display = "flex"; // zobrazí overlay
 });
-
-closeBtn.addEventListener("click", () => {
+document.getElementById("closeHelp").addEventListener("click", () => {
   overlay.style.display = "none"; // skryje overlay
 });
-
-// klik mimo obsah overlay skryje nápovědu
 overlay.addEventListener("click", (e) => {
   if (e.target === overlay) overlay.style.display = "none";
 });
 
+// FIRST TEXT ADDED ON START-UP
 addRow();

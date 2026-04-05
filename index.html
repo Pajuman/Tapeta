@@ -5,7 +5,7 @@
   <link rel="stylesheet" href="style.css" type="text/css">
   <script type="module" src="./js/main.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <title>Konfigurátor cedule</title>  
+  <title>Konfigurátor tapety</title>  
   <link rel="shortcut icon" href="//www.brydova.cz/wp-content/uploads/2016/02/cropped-ikona.png">
   <link rel="stylesheet" id="gfont-style-css" href="//fonts.googleapis.com/css?family=Open+Sans%3A400italic%2C400%2C300%2C600%2C700%2C800%7CMerriweather%3A300%2C400%2C700&amp;ver=6.8.5" type="text/css" media="all">
 </head>
@@ -49,7 +49,13 @@
   </div>
 </template>   
 
-<canvas id="canvas"></canvas>
+<div class="canvas-wrapper">
+  <img id="leftPreview" class="sidePreview" />
+  
+  <canvas id="canvas"></canvas>
+  
+  <img id="rightPreview" class="sidePreview" />
+</div>
   
 </body>
 </html>

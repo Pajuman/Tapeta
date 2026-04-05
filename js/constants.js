@@ -25,8 +25,12 @@ export const FONT_SIZE = {
   step: 5
 };
 
-// image
-export const IMAGE_SRC = "../images/tapeta.png";
+
+export const IMAGES = [
+  "../images/tapeta0.png",
+  "../images/tapeta1.png",
+  "../images/tapeta2.png"
+];
 
 // fonts
 export const FONTS = ["Arial", "Times New Roman", "Courier New"];

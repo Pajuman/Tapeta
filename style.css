@@ -38,6 +38,29 @@ h2 {
   border-radius: 8px;
 }
 
+.canvas-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.sidePreview {
+  width: 80px;
+  height: auto;
+  opacity: 0.6;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.sidePreview:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+
 /* ---------- BUTTONS ---------- */
 
 button {
