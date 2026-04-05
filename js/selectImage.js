@@ -1,16 +1,6 @@
-import { IMAGES } from "./constants";
-import { renderPreview } from "./renderPreview";
+import { currentImageSrc, currentIndex, IMAGES } from "./appState.js";
 
-let currentIndex = 1;
-
-const leftPreview = document.getElementById("leftPreview");
-const rightPreview = document.getElementById("rightPreview");
-
-// UPDATE IMAGES
-function updateImages() {
-  // hlavní obrázek
-  window.currentImageSrc = IMAGES[currentIndex];
-
+export function updateImages(leftPreview, rightPreview) { 
   // LEFT IMAGE
   if (currentIndex > 0) {
     leftPreview.src = IMAGES[currentIndex - 1];
@@ -26,21 +16,6 @@ function updateImages() {
   } else {
     rightPreview.style.visibility = "hidden";
   }
-
-  renderPreview(textLayers);
 }
 
-// 👉 kliky
-leftPreview.addEventListener("click", () => {
-  if (currentIndex > 0) {
-    currentIndex--;
-    updateImages();
-  }
-});
 
-rightPreview.addEventListener("click", () => {
-  if (currentIndex < IMAGES.length - 1) {
-    currentIndex++;
-    updateImages();
-  }
-});

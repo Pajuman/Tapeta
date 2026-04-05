@@ -1,5 +1,6 @@
-import { SCALE, PRINT_WIDTH, PRINT_HEIGHT, SIGN_AREA, IMAGES } from "./constants.js";
+import { SCALE, PRINT_WIDTH, PRINT_HEIGHT, SIGN_AREA } from "./constants.js";
 import { textLayers } from "./textLayers.js";
+import { currentImageSrc } from "./appState.js";
 
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
@@ -7,11 +8,15 @@ const ctx = canvas.getContext("2d");
 canvas.width = PRINT_WIDTH * SCALE;
 canvas.height = PRINT_HEIGHT * SCALE;
 
-export let currentIndex = 1;
 const image = new Image();
-image.src = IMAGES[currentIndex];
+
+export function setPreviewImage() {
+  image.src = currentImageSrc;
+}
 
 export function renderPreview(layers) {
+  if (!image.complete) return;
+
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
 
@@ -29,4 +34,4 @@ export function renderPreview(layers) {
 }
 
 // RENDER AFTER IMAGE LOADS
-image.onload = () => renderPreview(textLayers);
+image.onload = () => {renderPreview(textLayers)}

@@ -3,10 +3,8 @@ import {
   PRINT_HEIGHT, 
   SCALE, 
   SIGN_AREA,
-  IMAGES
 } from "./constants.js";
-
-import { currentIndex } from "./renderPreview.js";
+import { currentImageSrc } from "./appState.js";
 
 export function exportPDF(layers) {
   console.log(layers);
@@ -17,7 +15,7 @@ export function exportPDF(layers) {
   exportCanvas.height = PRINT_HEIGHT; 
 
   const img = new Image();
-  img.src = IMAGES[currentIndex];
+  img.src = currentImageSrc;
 
   img.onload = () => {
     ctx.imageSmoothingQuality = "high";
