@@ -1,4 +1,0 @@
-1, tisk v dostatečné kvalitě
-2, fonty a přesný alignment
-3, výběr obrázku
-4, platby
